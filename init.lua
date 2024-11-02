@@ -644,45 +644,6 @@ require('lazy').setup({
       },
     },
   },
-
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    },
-    keys = {
-      {
-        '<leader>e',
-        function()
-          local reveal_file = vim.fn.expand '%:p'
-          if reveal_file == '' then
-            reveal_file = vim.fn.getcwd()
-          else
-            local f = io.open(reveal_file, 'r')
-            if f then
-              f.close(f)
-            else
-              reveal_file = vim.fn.getcwd()
-            end
-          end
-          require('neo-tree.command').execute {
-            action = 'focus', -- OPTIONAL, this is the default value
-            source = 'filesystem', -- OPTIONAL, this is the default value
-            position = 'left', -- OPTIONAL, this is the default value
-            reveal_file = reveal_file, -- path to file or folder to reveal
-            reveal_force_cwd = true, -- change cwd without asking if needed
-            toggle = true,
-          }
-        end,
-        desc = 'Open neo-tree at current file or working directory',
-      },
-    },
-  },
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -837,6 +798,18 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      require('mini.files').setup {
+        mappings = {
+          go_in = 'L',
+          go_in_plus = 'l',
+        },
+      }
+      vim.keymap.set('n', '<leader>e', function()
+        MiniFiles.open(vim.api.nvim_buf_get_name(0))
+      end, {
+        desc = 'Open neo-tree at current file or working directory',
+      })
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
