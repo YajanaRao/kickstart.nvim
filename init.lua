@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -75,15 +75,20 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 
 -- Map `jk` to escape in insert mode
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('i', 'jj', '<Esc>')
 
+-- backspace to delete work
+vim.keymap.set('n', '<BS>', 'daw')
+vim.keymap.set('n', '<Leader>bn', ':bn<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<Leader>bp', ':bp<CR>', { desc = 'Prev buffer' })
 -- Map move around with JK when in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
--- Move current line / block with Alt-j/k a la vscode.
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==')
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==')
+-- Move current line / block with Shift-j/k
+vim.keymap.set('n', 'J', ':m .+1<CR>==')
+vim.keymap.set('n', 'K', ':m .-2<CR>==')
 
 -- Write in normal mode
 vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
@@ -310,11 +315,12 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          path_display = { 'smart' },
+          --   mappings = {
+          --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          --   },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -461,7 +467,7 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>ww', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -640,47 +646,31 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
+        vue = { 'prettierd', 'prettier', stop_after_first = true },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
 
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    },
-    keys = {
-      {
-        '<leader>e',
-        function()
-          local reveal_file = vim.fn.expand '%:p'
-          if reveal_file == '' then
-            reveal_file = vim.fn.getcwd()
-          else
-            local f = io.open(reveal_file, 'r')
-            if f then
-              f.close(f)
-            else
-              reveal_file = vim.fn.getcwd()
-            end
-          end
-          require('neo-tree.command').execute {
-            action = 'focus', -- OPTIONAL, this is the default value
-            source = 'filesystem', -- OPTIONAL, this is the default value
-            position = 'left', -- OPTIONAL, this is the default value
-            reveal_file = reveal_file, -- path to file or folder to reveal
-            reveal_force_cwd = true, -- change cwd without asking if needed
-            toggle = true,
-          }
-        end,
-        desc = 'Open neo-tree at current file or working directory',
+    'nvim-tree/nvim-tree.lua', -- no more netrw
+    opts = {
+      hijack_cursor = true,
+      view = {
+        adaptive_size = true,
+        width = 30,
+        side = 'left',
+      },
+      git = {
+        enable = true, -- show git statuses
+        ignore = false, -- still show .gitignored files
       },
     },
+    keys = {
+      { '<Leader>e', '<cmd>NvimTreeToggle<CR>', desc = 'toggle file browser' },
+      { '<Leader>ef', '<cmd>NvimTreeFindFile<CR>', desc = 'open file browser with current file showing' },
+    },
+    cmd = { 'NvimTreeToggle' },
   },
 
   { -- Autocompletion
@@ -896,14 +886,13 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
