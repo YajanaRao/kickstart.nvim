@@ -5,9 +5,6 @@
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'jj', '<Esc>')
 
--- backspace to delete work
-vim.keymap.set('n', '<BS>', 'daw')
-
 -- Buffers
 vim.keymap.set('n', '<leader>bd', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 -- vim.keymap.set('n', '<Leader>bn', ':bn<CR>', { desc = 'Next buffer' })
