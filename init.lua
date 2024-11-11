@@ -391,9 +391,6 @@ require('lazy').setup({
   -- { 'rose-pine/neovim', name = 'rose-pine' },
   { 'ellisonleao/gruvbox.nvim', name = 'gruvbox' },
 
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-
   require 'kickstart.plugins.mini',
 
   { -- Highlight, edit, and navigate code
