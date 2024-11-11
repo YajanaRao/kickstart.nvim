@@ -388,8 +388,7 @@ require('lazy').setup({
   },
 
   -- If you want to see what colorschemes are already installed, you can use `:Telescope`.
-  -- { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'ellisonleao/gruvbox.nvim', name = 'gruvbox' },
+  require 'kickstart.plugins.colorscheme',
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -467,4 +466,5 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd 'colorscheme gruvbox'
+
+vim.cmd.colorscheme 'catppuccin'
