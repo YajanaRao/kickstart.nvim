@@ -1,6 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+vim.keymap.set('n', ';', ':', { desc = 'CMD enter command mode' })
+
 -- Map `jk` and `jj` to escape in insert mode
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'jj', '<Esc>')

@@ -188,6 +188,12 @@ return {
         ts_ls = {},
         --
 
+        volar = {
+          -- cmd = {...},
+          filetypes = { 'vue', 'javascript', 'json' },
+          -- capabilities = {},
+        },
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
