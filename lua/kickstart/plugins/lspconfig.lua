@@ -186,11 +186,18 @@ return {
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
-        --
+        cssls = {},
+        html = {},
+        emmet_ls = {},
 
         volar = {
           -- cmd = {...},
-          filetypes = { 'vue', 'javascript', 'json' },
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
+          filetypes = { 'vue' },
           -- capabilities = {},
         },
 
