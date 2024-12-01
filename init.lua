@@ -390,6 +390,8 @@ require('lazy').setup({
       }
     end,
   },
+  -- Context aware comments in react html or css
+  require 'kickstart.plugins.comments',
 
   -- If you want to see what colorschemes are already installed, you can use `:Telescope`.
   require 'kickstart.plugins.colorscheme',
