@@ -18,7 +18,9 @@ end, { desc = "Smart dd, don't yank empty lines", expr = true })
 vim.keymap.set('n', '<leader>bd', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 vim.keymap.set('n', '<C-l>', ':bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-h>', ':bp<CR>', { desc = 'Prev buffer' })
+vim.keymap.set('n', '<leader>bc', ':%bdelete<CR>', { desc = 'Close all buffers' })
 vim.keymap.set('n', '<TAB>', '<C-^>', { desc = 'Alternate buffers' })
+
 --  ─( Split "Sensibly" )───────────────────────────────────────────────
 local split_sensibly = function()
   if vim.api.nvim_win_get_width(0) > math.floor(vim.api.nvim_win_get_height(0) * 2.3) then
@@ -33,8 +35,8 @@ vim.keymap.set('n', '<leader>bs', split_sensibly, { desc = 'Alternate buffers' }
 -- lines and characters movemnt for normal mode
 vim.keymap.set('n', 'J', '7j')
 vim.keymap.set('n', 'K', '7k')
-vim.keymap.set('n', 'L', '25l')
-vim.keymap.set('n', 'H', '25h')
+vim.keymap.set('n', 'H', '^')
+vim.keymap.set('n', 'L', '$')
 
 -- lines and characters movemnt for visual mode
 vim.keymap.set('v', 'J', '7j')
@@ -52,10 +54,10 @@ vim.keymap.set('i', '<M-Left>', '<C-o>25h')
 vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 
 -- TODO: figure out what does this do
-vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
-vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
-vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
+vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
+vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -85,7 +87,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.keymap.set('n', '<leader>gg', function()
-  vim.cmd 'terminal lazygit'
-end, { desc = 'Lazy Git' })
 -- vim: ts=2 sts=2 sw=2 et
