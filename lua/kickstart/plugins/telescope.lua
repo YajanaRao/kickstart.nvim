@@ -45,17 +45,46 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
           path_display = { 'smart' },
+          previewer = false,
           --   mappings = {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
         },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            previewer = false,
+            find_command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' },
+            layout_config = { prompt_position = 'top' },
+            sorting_strategy = 'ascending',
+          },
+          live_grep = {
+            only_sort_text = true,
+            previewer = true,
+          },
+          grep_string = {
+            only_sort_text = true,
+            previewer = true,
+          },
+          buffers = {
+            mappings = {
+              i = {
+                ['<c-d>'] = actions.delete_buffer,
+              },
+              n = {
+                ['<c-d>'] = actions.delete_buffer,
+              },
+            },
+            previewer = false,
+            theme = 'dropdown',
+          },
+        },
         extensions = {
           fzf = {
             fuzzy = true, -- false will only do exact matching
