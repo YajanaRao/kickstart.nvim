@@ -118,6 +118,8 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
+  require 'kickstart.plugins.mini',
+  require 'kickstart.plugins.snacks',
   require 'kickstart.plugins.telescope',
 
   -- LSP Plugins
@@ -288,8 +290,6 @@ require('lazy').setup({
   -- If you want to see what colorschemes are already installed, you can use `:Telescope`.
   require 'kickstart.plugins.colorscheme',
 
-  require 'kickstart.plugins.mini',
-
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -322,9 +322,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.git', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
