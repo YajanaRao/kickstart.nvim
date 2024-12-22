@@ -64,10 +64,14 @@ return {
           live_grep = {
             only_sort_text = true,
             previewer = true,
+            layout_config = { prompt_position = 'top' },
+            sorting_strategy = 'ascending',
           },
           grep_string = {
             only_sort_text = true,
             previewer = true,
+            layout_config = { prompt_position = 'top' },
+            sorting_strategy = 'ascending',
           },
           buffers = {
             mappings = {
@@ -84,9 +88,9 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = false, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
+            fuzzy = true,
+            override_generic_sorter = false,
+            override_file_sorter = true,
             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
           },
           ['ui-select'] = {
