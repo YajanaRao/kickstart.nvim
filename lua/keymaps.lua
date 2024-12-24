@@ -32,11 +32,14 @@ end
 -- Should automatically split or vsplit based on Ratios
 vim.keymap.set('n', '<leader>bs', split_sensibly, { desc = 'Alternate buffers' })
 
+-- Movement
 -- lines and characters movemnt for normal mode
 vim.keymap.set('n', 'J', '7j')
 vim.keymap.set('n', 'K', '7k')
 vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'L', '$')
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move half page down with centered cursor' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half page up with centered cursor' })
 
 -- lines and characters movemnt for visual mode
 vim.keymap.set('v', 'J', '7j')
@@ -44,11 +47,9 @@ vim.keymap.set('v', 'K', '7k')
 vim.keymap.set('v', 'L', '25l')
 vim.keymap.set('v', 'H', '25h')
 
--- lines and characters movemnt for insert mode
-vim.keymap.set('i', '<M-Down>', '<C-o>7j')
-vim.keymap.set('i', '<M-Up>', '<C-o>7k')
-vim.keymap.set('i', '<M-Right>', '<C-o>25l')
-vim.keymap.set('i', '<M-Left>', '<C-o>25h')
+-- Search
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Search with centered result' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Search backwards with centered result' })
 
 -- Write in normal mode
 vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })

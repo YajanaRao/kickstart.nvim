@@ -120,6 +120,7 @@ require('lazy').setup({
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.snacks',
+  require 'kickstart.plugins.colorscheme',
   require 'kickstart.plugins.telescope',
 
   -- Completion Plugins
@@ -174,9 +175,6 @@ require('lazy').setup({
   },
   -- Context aware comments in react html or css
   require 'kickstart.plugins.comments',
-
-  -- If you want to see what colorschemes are already installed, you can use `:Telescope`.
-  require 'kickstart.plugins.colorscheme',
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',

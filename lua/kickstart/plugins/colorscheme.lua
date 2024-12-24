@@ -21,6 +21,10 @@ return {
       -- default_integrations = true,
       --
       transparent = true,
+      styles = {
+        sidebars = 'transparent',
+        floats = 'transparent',
+      },
       -- transparent_background = true,
       -- styles = {
       --   comments = {},
