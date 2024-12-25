@@ -25,14 +25,25 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         -- optionally disable cmdline completions
-        -- cmdline = {},
+        cmdline = function()
+          local type = vim.fn.getcmdtype()
+          -- Search forward and backward
+          if type == '/' or type == '?' then
+            return { 'buffer' }
+          end
+          -- Commands
+          if type == ':' then
+            return { 'cmdline' }
+          end
+          return {}
+        end,
       },
       completion = {
         accept = { auto_brackets = { enabled = true } },
         menu = { border = vim.g.borderStyle },
         documentation = { window = { border = vim.g.borderStyle } },
       },
-      signature = { enabled = true, window = { border = 'single' } },
+      signature = { enabled = true, window = { border = vim.g.borderStyle } },
     },
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
