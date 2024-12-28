@@ -12,7 +12,7 @@ return {
       -- flavour = 'mocha', -- latte, frappe, macchiato, mocha
       theme = 'tokyonight',
       terminal_colors = true,
-      transparent = true,
+      transparent = false,
       styles = {
         sidebars = 'transparent',
         floats = 'transparent',
