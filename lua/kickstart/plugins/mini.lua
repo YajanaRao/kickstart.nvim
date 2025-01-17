@@ -39,22 +39,6 @@ return {
       require('mini.git').setup()
       require('mini.notify').setup()
 
-      require('mini.diff').setup {
-        view = {
-          style = 'sign',
-          signs = {
-            add = '+',
-            change = '~',
-            delete = '-',
-          },
-        },
-      }
-
-      -- Create a keymap to toggle the mini.diff overlay
-      vim.keymap.set('n', '<leader>go', function()
-        require('mini.diff').toggle_overlay(0)
-      end, { desc = 'Toggle Diff overlay' })
-
       require('mini.files').setup {
         mappings = {
           go_in = 'L',
