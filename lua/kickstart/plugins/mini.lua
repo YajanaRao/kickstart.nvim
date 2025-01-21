@@ -10,6 +10,7 @@ return {
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
       require('mini.icons').setup()
+      require('mini.indentscope').setup()
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
@@ -38,22 +39,6 @@ return {
 
       require('mini.git').setup()
       require('mini.notify').setup()
-
-      require('mini.diff').setup {
-        view = {
-          style = 'sign',
-          signs = {
-            add = '+',
-            change = '~',
-            delete = '-',
-          },
-        },
-      }
-
-      -- Create a keymap to toggle the mini.diff overlay
-      vim.keymap.set('n', '<leader>go', function()
-        require('mini.diff').toggle_overlay(0)
-      end, { desc = 'Toggle Diff overlay' })
 
       require('mini.files').setup {
         mappings = {
