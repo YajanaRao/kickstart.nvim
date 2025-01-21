@@ -6,7 +6,14 @@ return {
     opts = {
       lazygit = {},
       indent = {},
-      picker = {},
+      bigfiles = {},
+      picker = {
+        formatters = {
+          file = {
+            filename_first = true,
+          },
+        },
+      },
       -- notifier = {},
     },
     keys = {
@@ -63,9 +70,16 @@ return {
       {
         '<leader>gl',
         function()
-          Snacks.lazygit.log()
+          Snacks.picker.git_log()
         end,
         desc = 'Lazygit Log (cwd)',
+      },
+      {
+        '<leader>gs',
+        function()
+          Snacks.picker.git_status()
+        end,
+        desc = 'Git Status',
       },
       -- find
       {
@@ -133,6 +147,27 @@ return {
         end,
         desc = 'Grep Open Buffers',
       },
+      {
+        '<leader>sj',
+        function()
+          Snacks.picker.jumps()
+        end,
+        desc = 'Jumps',
+      },
+      {
+        '<leader>sR',
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = 'Resume',
+      },
+      {
+        '<leader>sq',
+        function()
+          Snacks.picker.qflist()
+        end,
+        desc = 'Quickfix List',
+      },
       -- LSP
       {
         'gd',
@@ -164,11 +199,25 @@ return {
         desc = 'Goto T[y]pe Definition',
       },
       {
-        '<leader>ss',
+        '<leader>ds',
         function()
           Snacks.picker.lsp_symbols()
         end,
-        desc = 'LSP Symbols',
+        desc = '[D]ocument [S]ymbols',
+      },
+      {
+        '<leader>df',
+        function()
+          Snacks.picker.lsp_symbols {
+            filter = {
+              default = {
+                'Function',
+                'Method',
+              },
+            },
+          }
+        end,
+        desc = '[D]ocument [F]unctions',
       },
     },
   },
