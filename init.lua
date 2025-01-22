@@ -120,7 +120,6 @@ require('lazy').setup({
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.snacks',
-  -- require 'kickstart.plugins.telescope',
 
   -- Completion Plugins
   require 'kickstart.plugins.cmp',
