@@ -7,6 +7,7 @@ return {
       lazygit = {},
       indent = {},
       bigfiles = {},
+      -- notifier = {},
       picker = {
         formatters = {
           file = {
@@ -72,7 +73,7 @@ return {
         function()
           Snacks.picker.git_log()
         end,
-        desc = 'Lazygit Log (cwd)',
+        desc = 'Git Log (cwd)',
       },
       {
         '<leader>gs',
@@ -81,28 +82,14 @@ return {
         end,
         desc = 'Git Status',
       },
+      {
+        '<leader>gb',
+        function()
+          Snacks.picker.git_branches()
+        end,
+        desc = 'Git Branches',
+      },
       -- find
-      {
-        '<leader>fb',
-        function()
-          Snacks.picker.buffers()
-        end,
-        desc = 'Buffers',
-      },
-      {
-        '<leader>fc',
-        function()
-          Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
-        end,
-        desc = 'Find Config File',
-      },
-      {
-        '<leader>ff',
-        function()
-          Snacks.picker.files()
-        end,
-        desc = 'Find Files',
-      },
       {
         '<leader>fg',
         function()
@@ -119,6 +106,27 @@ return {
       },
       -- Search
       {
+        '<leader>sf',
+        function()
+          Snacks.picker.files()
+        end,
+        desc = 'Search Files',
+      },
+      {
+        '<leader>sb',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Buffers',
+      },
+      {
+        '<leader>sc',
+        function()
+          Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+        end,
+        desc = 'Find Config File',
+      },
+      {
         '<leader>sw',
         function()
           Snacks.picker.grep_word()
@@ -127,7 +135,7 @@ return {
         mode = { 'n', 'x' },
       },
       {
-        '<leader>sb',
+        '<leader>sl',
         function()
           Snacks.picker.lines()
         end,
@@ -136,7 +144,9 @@ return {
       {
         '<leader>sg',
         function()
-          Snacks.picker.grep()
+          Snacks.picker.grep {
+            regex = false,
+          }
         end,
         desc = 'Grep',
       },
@@ -155,7 +165,7 @@ return {
         desc = 'Jumps',
       },
       {
-        '<leader>sR',
+        '<leader>sr',
         function()
           Snacks.picker.resume()
         end,
@@ -218,6 +228,14 @@ return {
           }
         end,
         desc = '[D]ocument [F]unctions',
+      },
+      -- Scratch
+      {
+        '<leader>tt',
+        function()
+          Snacks.scratch { icon = ' ', name = 'Todo', ft = 'markdown', file = '~/Documents/Notes/To Do/TODO.md' }
+        end,
+        desc = 'Todo List',
       },
     },
   },

@@ -38,7 +38,6 @@ return {
       }
 
       require('mini.git').setup()
-      require('mini.notify').setup()
 
       require('mini.files').setup {
         mappings = {
