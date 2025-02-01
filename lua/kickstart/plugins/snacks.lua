@@ -8,6 +8,9 @@ return {
       indent = {},
       bigfiles = {},
       -- notifier = {},
+      explorer = {
+        replace_netrw = true,
+      },
       picker = {
         formatters = {
           file = {
@@ -91,6 +94,13 @@ return {
       },
       -- find
       {
+        '<leader>fe',
+        function()
+          Snacks.picker.explorer()
+        end,
+        desc = 'File Explorer',
+      },
+      {
         '<leader>fg',
         function()
           Snacks.picker.git_files()
@@ -120,7 +130,7 @@ return {
         desc = 'Buffers',
       },
       {
-        '<leader>sc',
+        '<leader>sn',
         function()
           Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
         end,
