@@ -58,7 +58,7 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  require 'kickstart.plugins.ui',
+  require 'plugins.ui',
 
   -- NOTE: Plugins can specify dependencies.
   --
@@ -66,58 +66,35 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-  require 'kickstart.plugins.mini',
-  require 'kickstart.plugins.snacks',
+  require 'plugins.mini',
+  require 'plugins.snacks',
 
   -- Completion Plugins
-  require 'kickstart.plugins.cmp',
+  require 'plugins.cmp',
 
   -- LSP Plugins
-  require 'kickstart.plugins.lspconfig',
+  require 'plugins.lspconfig',
 
   -- Formatting
-  require 'kickstart.plugins.format',
+  require 'plugins.format',
 
   -- Context aware comments in react html or css
-  require 'kickstart.plugins.comments',
+  require 'plugins.comments',
 
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    opts = {
-      ensure_installed = { 'bash', 'c', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vue', 'html', 'css', 'scss', 'javascript' },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  },
+  -- Treesitter
+  require 'plugins.treesitter',
 
-  -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.git', -- adds gitsigns recommend keymaps
+  -- require 'plugins.debug',
+  require 'plugins.lint',
+  require 'plugins.git', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  require 'kickstart.plugins.ai',
-  require 'kickstart.plugins.trouble',
-  require 'kickstart.plugins.colorscheme',
+  require 'plugins.ai',
+  require 'plugins.trouble',
+  require 'plugins.colorscheme',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
