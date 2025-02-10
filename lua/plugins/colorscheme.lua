@@ -8,7 +8,11 @@ return {
     priority = 1000,
     config = function()
       require('everforest').setup {
+        background = 'hard',
         italics = true,
+        overrides = {
+          Visual = { bg = '#5E81AC' },
+        },
       }
       vim.cmd.colorscheme 'everforest'
     end,

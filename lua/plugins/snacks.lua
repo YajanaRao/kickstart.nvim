@@ -29,41 +29,34 @@ return {
         desc = 'Smart Find Files',
       },
       {
-        'gd',
+        '<leader>,',
         function()
-          Snacks.picker.lsp_definitions()
+          Snacks.picker.buffers()
         end,
-        desc = 'Goto Definition',
+        desc = 'Buffers',
       },
       {
-        'gD',
+        '<leader>/',
         function()
-          Snacks.picker.lsp_declarations()
+          Snacks.picker.grep()
         end,
-        desc = 'Goto Declaration',
+        desc = 'Grep',
       },
       {
-        'gr',
+        '<leader>:',
         function()
-          Snacks.picker.lsp_references()
+          Snacks.picker.command_history()
         end,
-        nowait = true,
-        desc = 'References',
+        desc = 'Command History',
       },
       {
-        'gI',
+        '<leader>n',
         function()
-          Snacks.picker.lsp_implementations()
+          Snacks.picker.notifications()
         end,
-        desc = 'Goto Implementation',
+        desc = 'Notification History',
       },
-      {
-        'gy',
-        function()
-          Snacks.picker.lsp_type_definitions()
-        end,
-        desc = 'Goto T[y]pe Definition',
-      },
+      -- Git
       {
         '<leader>gf',
         function()
@@ -101,11 +94,25 @@ return {
       },
       -- find
       {
-        '<leader>fe',
+        '<leader>fb',
         function()
-          Snacks.picker.explorer()
+          Snacks.picker.buffers()
         end,
-        desc = 'File Explorer',
+        desc = 'Buffers',
+      },
+      {
+        '<leader>fc',
+        function()
+          Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+        end,
+        desc = 'Find Config File',
+      },
+      {
+        '<leader>ff',
+        function()
+          Snacks.picker.files()
+        end,
+        desc = 'Find Files',
       },
       {
         '<leader>fg',
@@ -115,11 +122,25 @@ return {
         desc = 'Find Git Files',
       },
       {
+        '<leader>fp',
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = 'Projects',
+      },
+      {
         '<leader>fr',
         function()
           Snacks.picker.recent()
         end,
         desc = 'Recent',
+      },
+      {
+        '<leader>fe',
+        function()
+          Snacks.picker.explorer()
+        end,
+        desc = 'File Explorer',
       },
       -- Search
       {
@@ -204,6 +225,13 @@ return {
         desc = 'Goto Definition',
       },
       {
+        'gD',
+        function()
+          Snacks.picker.lsp_declarations()
+        end,
+        desc = 'Goto Declaration',
+      },
+      {
         'gr',
         function()
           Snacks.picker.lsp_references()
@@ -253,6 +281,22 @@ return {
           Snacks.scratch { icon = ' ', name = 'Todo', ft = 'markdown', file = '~/Documents/Notes/To Do/TODO.md' }
         end,
         desc = 'Todo List',
+      },
+      {
+        ']]',
+        function()
+          Snacks.words.jump(vim.v.count1)
+        end,
+        desc = 'Next Reference',
+        mode = { 'n', 't' },
+      },
+      {
+        '[[',
+        function()
+          Snacks.words.jump(-vim.v.count1)
+        end,
+        desc = 'Prev Reference',
+        mode = { 'n', 't' },
       },
     },
   },
