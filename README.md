@@ -1,14 +1,13 @@
-# kickstart.nvim
+# nvim config
 
 ## Introduction
 
-A starting point for Neovim that is:
+Minimalistic Neovim configuration for web development using React.js, React Native and Vue js
 
 * Small
-* Single-file
-* Completely Documented
+* Good looking
+* Feature Rich
 
-**NOT** a Neovim distribution, but instead a starting point for your configuration.
 
 ## Installation
 
@@ -27,9 +26,10 @@ External Requirements:
 - Clipboard tool (xclip/xsel/win32yank or other depending on platform)
 - A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
   - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
+  - Jetbrains Mono and Maplo is a good font to start with
+
 - Language Setup:
   - If you want to write Typescript, you need `npm`
-  - If you want to write Golang, you will need `go`
   - etc.
 
 > **NOTE**
@@ -107,10 +107,6 @@ Read through the `init.lua` file in your configuration folder for more
 information about extending and exploring Neovim. That also includes
 examples of adding popularly requested plugins.
 
-
-### Getting Started
-
-[The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
 
 ### FAQ
 
