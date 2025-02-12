@@ -3,22 +3,18 @@ return {
   -- { 'rose-pine/neovim', name = 'rose-pine' },
   -- { 'ellisonleao/gruvbox.nvim', name = 'gruvbox' },
   {
-    'YajanaRao/everforest',
+    'YajanaRao/forestflower',
     lazy = false,
     priority = 1000,
     config = function()
-      require('everforest').setup {
+      require('forestflower').setup {
         background = 'hard',
         italics = true,
-        overrides = {
-          Visual = { bg = '#5E81AC' },
-        },
       }
-      vim.cmd.colorscheme 'everforest'
+      vim.cmd.colorscheme 'forestflower'
     end,
   },
   -- {
-  --   -- 'catppuccin/nvim',
   --   'folke/tokyonight.nvim',
   --   name = 'tokyonight',
   --   lazy = false,
