@@ -6,6 +6,7 @@ return {
     opts = {
       lazygit = {},
       indent = {},
+      image = {},
       bigfiles = {},
       -- notifier = {},
       explorer = {
