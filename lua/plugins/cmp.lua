@@ -20,12 +20,10 @@ return {
         nerd_font_variant = 'mono',
       },
 
-      -- default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-        -- optionally disable cmdline completions
-        cmdline = function()
+      -- optionally disable cmdline completions
+      cmdline = {
+        enabled = true,
+        sources = function()
           local type = vim.fn.getcmdtype()
           -- Search forward and backward
           if type == '/' or type == '?' then
@@ -37,6 +35,10 @@ return {
           end
           return {}
         end,
+      },
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
       completion = {
         accept = { auto_brackets = { enabled = true } },

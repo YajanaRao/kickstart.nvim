@@ -13,6 +13,9 @@ return {
         replace_netrw = true,
       },
       picker = {
+        grep = {
+          command = { 'rg', '--vimgrep', '--smart-case' }, -- Use --smart-case or -i
+        },
         formatters = {
           file = {
             filename_first = true,
