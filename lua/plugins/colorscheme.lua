@@ -8,7 +8,7 @@ return {
     priority = 1000,
     config = function()
       require('forestflower').setup {
-        background = 'hard',
+        flavour = 'night',
         italics = true,
       }
       vim.cmd.colorscheme 'forestflower'

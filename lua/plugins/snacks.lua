@@ -8,8 +8,11 @@ return {
       indent = {},
       image = {},
       bigfiles = {},
+      dashboard = {},
       -- notifier = {},
       explorer = {
+        hidden = true,
+        ignored = true,
         replace_netrw = true,
       },
       picker = {
@@ -21,8 +24,36 @@ return {
             filename_first = true,
           },
         },
+        win = {
+          input = {
+            keys = {
+              ['<a-s>'] = { 'flash', mode = { 'n', 'i' } },
+              ['s'] = { 'flash' },
+            },
+          },
+        },
+        actions = {
+          flash = function(picker)
+            require('flash').jump {
+              pattern = '^',
+              label = { after = { 0, 0 } },
+              search = {
+                mode = 'search',
+                exclude = {
+                  function(win)
+                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                  end,
+                },
+              },
+              action = function(match)
+                local idx = picker.list:row2idx(match.pos[1])
+                picker.list:_move(idx, true, true)
+              end,
+            }
+          end,
+        },
       },
-      -- notifier = {},
+      words = {},
     },
     keys = {
       {
@@ -96,6 +127,14 @@ return {
         end,
         desc = 'Git Branches',
       },
+
+      {
+        '<leader>gd',
+        function()
+          Snacks.picker.git_diff()
+        end,
+        desc = 'Git Diff (Hunks)',
+      },
       -- find
       {
         '<leader>fb',
@@ -148,13 +187,6 @@ return {
       },
       -- Search
       {
-        '<leader>sf',
-        function()
-          Snacks.picker.files()
-        end,
-        desc = 'Search Files',
-      },
-      {
         '<leader>sb',
         function()
           Snacks.picker.buffers()
@@ -162,11 +194,11 @@ return {
         desc = 'Buffers',
       },
       {
-        '<leader>sn',
+        '<leader>sB',
         function()
-          Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+          Snacks.picker.grep_buffers()
         end,
-        desc = 'Find Config File',
+        desc = 'Grep Open Buffers',
       },
       {
         '<leader>sw',
@@ -258,25 +290,18 @@ return {
         desc = 'Goto T[y]pe Definition',
       },
       {
-        '<leader>ds',
+        '<leader>ss',
         function()
           Snacks.picker.lsp_symbols()
         end,
-        desc = '[D]ocument [S]ymbols',
+        desc = 'LSP [S]ymbols',
       },
       {
-        '<leader>df',
+        '<leader>sS',
         function()
-          Snacks.picker.lsp_symbols {
-            filter = {
-              default = {
-                'Function',
-                'Method',
-              },
-            },
-          }
+          Snacks.picker.lsp_workspace_symbols()
         end,
-        desc = '[D]ocument [F]unctions',
+        desc = 'LSP Workspace Symbols',
       },
       -- Scratch
       {

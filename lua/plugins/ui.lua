@@ -1,4 +1,65 @@
 return {
+  {
+    'folke/snacks.nvim',
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      ---@class snacks.dashboard.Config
+      ---@field enabled? boolean
+      ---@field sections snacks.dashboard.Section
+      ---@field formats table<string, snacks.dashboard.Text|fun(item:snacks.dashboard.Item, ctx:snacks.dashboard.Format.ctx):snacks.dashboard.Text>
+      dashboard = {
+        preset = {
+          -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
+          ---@type fun(cmd:string, opts:table)|nil
+          pick = nil,
+          -- Used by the `keys` section to show keymaps.
+          -- Set your custom keymaps here.
+          -- When using a function, the `items` argument are the default keymaps.
+          ---@type snacks.dashboard.Item[]
+          keys = {},
+          -- Used by the `header` section
+          header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+        },
+        -- item field formatters
+        formats = {
+          icon = function(item)
+            if item.file and item.icon == 'file' or item.icon == 'directory' then
+              return M.icon(item.file, item.icon)
+            end
+            return { item.icon, width = 2, hl = 'icon' }
+          end,
+          footer = { '%s', align = 'center' },
+          header = { '%s', align = 'center' },
+          file = function(item, ctx)
+            local fname = vim.fn.fnamemodify(item.file, ':~')
+            fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
+            if #fname > ctx.width then
+              local dir = vim.fn.fnamemodify(fname, ':h')
+              local file = vim.fn.fnamemodify(fname, ':t')
+              if dir and file then
+                file = file:sub(-(ctx.width - #dir - 2))
+                fname = dir .. '/…' .. file
+              end
+            end
+            local dir, file = fname:match '^(.*)/(.+)$'
+            return dir and { { dir .. '/', hl = 'dir' }, { file, hl = 'file' } } or { { fname, hl = 'file' } }
+          end,
+        },
+        sections = {
+          { section = 'header' },
+          { section = 'keys', gap = 1, padding = 1 },
+          { section = 'startup' },
+        },
+      },
+    },
+  },
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'

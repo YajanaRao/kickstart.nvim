@@ -1,5 +1,23 @@
 return {
   {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    build = ':Copilot auth',
+    event = 'BufReadPost',
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = '<Tab>',
+        },
+      },
+      panel = {
+        enabled = false,
+      },
+    },
+  },
+  {
     'yetone/avante.nvim',
     event = 'VeryLazy',
     version = false, -- set this if you want to always pull the latest change
@@ -28,9 +46,9 @@ return {
       'stevearc/dressing.nvim',
       'nvim-lua/plenary.nvim',
       'MunifTanjim/nui.nvim',
+      'zbirenbaum/copilot.lua',
       --- The below dependencies are optional,
       'echasnovski/mini.icons',
-      'zbirenbaum/copilot.lua', -- for providers='copilot'
       {
         -- Make sure to set this up properly if you have lazy=true
         'MeanderingProgrammer/render-markdown.nvim',

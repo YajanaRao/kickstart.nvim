@@ -7,7 +7,6 @@ require 'keymaps'
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-print(lazypath)
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
@@ -59,13 +58,7 @@ require('lazy').setup({
   --  config = function() ... end
 
   require 'plugins.ui',
-
-  -- NOTE: Plugins can specify dependencies.
-  --
-  -- The dependencies are proper plugin specifications as well - anything
-  -- you do for a plugin at the top level, you can do for a dependency.
-  --
-  -- Use the `dependencies` key to specify the dependencies of a particular plugin
+  require 'plugins.editor',
   require 'plugins.mini',
   require 'plugins.snacks',
 
@@ -93,7 +86,6 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   require 'plugins.ai',
-  require 'plugins.trouble',
   require 'plugins.colorscheme',
 }, {
   ui = {
