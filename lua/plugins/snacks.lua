@@ -3,6 +3,7 @@ return {
   {
     'folke/snacks.nvim',
     ---@type snacks.Config
+    priority = 1000,
     opts = {
       lazygit = {},
       indent = {},
