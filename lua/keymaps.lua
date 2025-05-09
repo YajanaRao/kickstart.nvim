@@ -16,10 +16,24 @@ end, { desc = "Smart dd, don't yank empty lines", expr = true })
 
 -- Buffers
 vim.keymap.set('n', '<leader>bd', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
-vim.keymap.set('n', '<C-l>', ':bn<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<C-h>', ':bp<CR>', { desc = 'Prev buffer' })
 vim.keymap.set('n', '<leader>bc', ':%bdelete<CR>', { desc = 'Close all buffers' })
 vim.keymap.set('n', '<TAB>', '<C-^>', { desc = 'Alternate buffers' })
+
+-- Move to window using the <ctrl> hjkl keys
+map('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
+map('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
+map('n', '<C-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
+map('n', '<C-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
+
+-- EXPERIMENT
+for i = 1, 9 do
+  vim.keymap.set('n', '[' .. i, function()
+    local buffers = vim.fn.getbufinfo { buflisted = 1 }
+    if buffers[i] then
+      vim.api.nvim_set_current_buf(buffers[i].bufnr)
+    end
+  end, { desc = 'Switch to buffer ' .. i })
+end
 
 --  ─( Split "Sensibly" )───────────────────────────────────────────────
 local split_sensibly = function()
