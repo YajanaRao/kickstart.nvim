@@ -253,6 +253,13 @@ return {
         end,
         desc = 'Quickfix List',
       },
+      {
+        '<leader>sp',
+        function()
+          Snacks.picker.cliphist()
+        end,
+        desc = 'Clipboard History',
+      },
       -- LSP
       {
         'gd',
