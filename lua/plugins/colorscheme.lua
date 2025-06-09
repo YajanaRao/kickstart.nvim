@@ -1,19 +1,18 @@
 return {
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   -- { 'rose-pine/neovim', name = 'rose-pine' },
   -- { 'ellisonleao/gruvbox.nvim', name = 'gruvbox' },
-  -- {
-  --   'YajanaRao/forestflower',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('forestflower').setup {
-  --       flavour = 'night',
-  --       italics = true,
-  --     }
-  --     vim.cmd.colorscheme 'forestflower'
-  --   end,
-  -- },
+  {
+    'YajanaRao/forestflower',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('forestflower').setup {
+        flavour = 'night',
+        italics = true,
+      }
+      vim.cmd.colorscheme 'forestflower'
+    end,
+  },
   -- {
   --   'folke/tokyonight.nvim',
   --   name = 'tokyonight',
