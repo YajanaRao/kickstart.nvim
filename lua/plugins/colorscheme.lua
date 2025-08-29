@@ -1,5 +1,11 @@
 return {
   -- { 'rose-pine/neovim', name = 'rose-pine' },
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   -- { 'ellisonleao/gruvbox.nvim', name = 'gruvbox' },
   {
     'YajanaRao/forestflower',
@@ -13,21 +19,4 @@ return {
       vim.cmd.colorscheme 'forestflower'
     end,
   },
-  -- {
-  --   'folke/tokyonight.nvim',
-  --   name = 'tokyonight',
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {
-  --     -- flavour = 'mocha', -- latte, frappe, macchiato, mocha
-  --     theme = 'tokyonight',
-  --     terminal_colors = true,
-  --     transparent = false,
-  --     styles = {
-  --       sidebars = 'transparent',
-  --       floats = 'transparent',
-  --     },
-  --   },
-  -- },
-  --
 }
