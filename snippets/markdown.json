@@ -1,0 +1,14 @@
+{
+  "Frontmatter": {
+    "prefix": "frontmatter",
+    "body": [
+      "---",
+      "title: \"${1}\"",
+      "description: \"${2}\"",
+      "date: \"${3:2021-08-24T22:40:32.169Z}\"",
+      "categories: ${4:blog}",
+      "---"
+    ],
+    "description": "${5}"
+  }
+}

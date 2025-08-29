@@ -20,9 +20,13 @@ return {
       { 'mason-org/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
       -- Allows extra capabilities provided by nvim-cmp
-      { 'saghen/blink.cmp' },
+      'saghen/blink.cmp',
+    },
+    opts = {
+      inline_hints = {
+        enabled = true,
+      },
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -110,6 +114,45 @@ return {
 
       local servers = {
         ts_ls = {},
+        vtsls = {
+          -- explicitly add default filetypes, so that we can extend
+          -- them in related extras
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'javascript.jsx',
+            'typescript',
+            'typescriptreact',
+            'typescript.tsx',
+          },
+          settings = {
+            complete_function_calls = true,
+            vtsls = {
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                maxInlayHintLength = 30,
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+            },
+            typescript = {
+              updateImportsOnFileMove = { enabled = 'always' },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = 'literals' },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
+        },
         cssls = {},
         html = {},
         emmet_ls = {},
@@ -135,6 +178,7 @@ return {
 
       require('mason-lspconfig').setup {
         ensure_installed = {},
+        automatic_enable = true,
         automatic_installation = false,
         handlers = {
           function(server_name)

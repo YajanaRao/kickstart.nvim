@@ -60,7 +60,11 @@ return {
       {
         '<leader><space>',
         function()
-          Snacks.picker.smart()
+          Snacks.picker.smart {
+            matcher = {
+              cwd_bonus = true,
+            },
+          }
         end,
         desc = 'Smart Find Files',
       },
