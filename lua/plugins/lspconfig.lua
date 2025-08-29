@@ -106,6 +106,11 @@ return {
         },
       }
 
+      vim.inlay_hints = {
+        enabled = true,
+        exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
+      }
+
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       local servers = {
